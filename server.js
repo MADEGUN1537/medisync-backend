@@ -5,13 +5,13 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Twilio credentials (use environment variables)
+// Twilio credentials (used environment variables)
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioPhone = process.env.TWILIO_PHONE_NUMBER;
 const client = twilio(accountSid, authToken);
 
-// Enable CORS
+// to enable CORS
 app.use(cors({
     origin: ['http://127.0.0.1:5500', 'https://your-app.com'], // Add your frontend URL
     methods: ['POST', 'OPTIONS'],
@@ -28,19 +28,19 @@ app.post('/send-sms', async (req, res) => {
     const { to, body } = req.body;
     const authHeader = req.headers.authorization;
 
-    // Validate authorization
+    //to  validate authorization
     if (authHeader !== 'Bearer my-unique-token-123') { // Use a secure token
         console.error('Unauthorized request, invalid token:', authHeader);
         return res.status(401).json({ status: 'error', message: 'Unauthorized' });
     }
 
-    // Validate payload
+    // to validate payload
     if (!to || !body) {
         console.error('Invalid payload:', { to, body });
         return res.status(400).json({ status: 'error', message: 'Missing to or body' });
     }
 
-    // Validate phone number format
+    // to validate phone number format
     if (!/^\+\d{10,15}$/.test(to)) {
         console.error('Invalid phone number format:', to);
         return res.status(400).json({ status: 'error', message: 'Invalid phone number format' });
