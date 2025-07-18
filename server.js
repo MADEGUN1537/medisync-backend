@@ -13,7 +13,7 @@ const client = twilio(accountSid, authToken);
 
 // to enable CORS
 app.use(cors({
-    origin: ['http://127.0.0.1:5500', 'https://your-app.com'], // Add your frontend URL
+    origin: ['http://127.0.0.1:5500', 'https://madegun1537.github.io/medisync/'], // my frontend URL
     methods: ['POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -29,7 +29,7 @@ app.post('/send-sms', async (req, res) => {
     const authHeader = req.headers.authorization;
 
     //to  validate authorization
-    if (authHeader !== 'Bearer my-unique-token-123') { // Use a secure token
+    if (authHeader !== 'Bearer my-unique-token-123') { 
         console.error('Unauthorized request, invalid token:', authHeader);
         return res.status(401).json({ status: 'error', message: 'Unauthorized' });
     }
