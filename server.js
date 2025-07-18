@@ -13,7 +13,7 @@ const client = twilio(accountSid, authToken);
 
 // to enable CORS
 app.use(cors({
-    origin: ['http://127.0.0.1:5500', 'https://madegun1537.github.io/medisync/'], // my frontend URL
+    origin: ['http://127.0.0.1:5500', 'https://madegun1537.github.io'], // my frontend URL
     methods: ['POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
